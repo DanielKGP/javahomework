@@ -64,7 +64,6 @@ public class PIMManager
     PIMTodo Todo = new PIMTodo(Todopriority,Todotext,date);
 
     PIMEntity temp = (PIMEntity)Todo;
-    System.out.println(temp.toString());
 
     addPIMEntity(temp);
   }
@@ -96,7 +95,7 @@ public class PIMManager
     PIMNote note = new PIMNote(Todopriority,Todotext);
 
     PIMEntity temp = (PIMEntity)note;
-    System.out.println(temp.toString());
+
     addPIMEntity(temp);
 
   }
@@ -119,7 +118,7 @@ public class PIMManager
     PIMContact contact = new PIMContact(contactpriority,firstname,lastname,emailaddress);
 
     PIMEntity temp = (PIMEntity)contact;
-    System.out.println(temp.toString());
+
     addPIMEntity(temp);
 
   }
@@ -155,15 +154,24 @@ public class PIMManager
 
   public void Save()
   {
-    try
+    PIMFile f = new PIMFile();
+    if(f.Open())
+    {
+      if(f.write(list,listcount))
+      {
+        System.out.println("Save successfully!");
+      }
+      else
+        System.out.println("Save unsuccessfully!");
+    }
+    /*try
     {
       System.out.println(file.isFile());
-      //file.createNewFile();
+
       BufferedWriter bw = new BufferedWriter(new FileWriter(file));
 
       for(int index = 0;index < listcount;index++)
       {
-        System.out.println(list[index].toString());
         bw.write(list[index].toString()+"\n");
       }
       bw.flush();
@@ -172,11 +180,14 @@ public class PIMManager
     catch(Exception e)
     {
       System.out.println(e);
-    }
+    }*/
   }
   public void Load()
   {
-    String[] listInfo = forLoad();
+    PIMFile f = new PIMFile();
+
+    String[] listInfo = f.getInformation();
+
     int count = 0;
     for (int i = 0;i <listInfo.length;i++ )
     {
@@ -203,26 +214,7 @@ public class PIMManager
       }
     }
   }
-  public String[] forLoad()
-  {
-    try
-    {
-      ArrayList<String> templist = new ArrayList<String>();
-      BufferedReader br = new BufferedReader(new FileReader(file));
-      String temp = "";
-      while((temp = br.readLine())!= null)
-      {
-        templist.add(temp);
-      }
-      br.close();
-      return templist.toArray(new String[templist.size()]);
-    }
-    catch(Exception e)
-    {
-      System.out.println("Read File failed!.");
-      return null;
-    }
-  }
+
 
   public void manageSystem()
   {

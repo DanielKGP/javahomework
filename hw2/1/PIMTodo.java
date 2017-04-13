@@ -2,7 +2,7 @@
 import java.text.*;
 import java.util.*;
 
-public class PIMTodo extends PIMEntity
+public class PIMTodo extends PIMEntity implements PIMDate
 {
   String Todo;
   Date Tododate;
@@ -25,11 +25,11 @@ public class PIMTodo extends PIMEntity
   {
     return this.Todo;
   }
-  public void setTododate(Date temp)
+  public void setDate(Date temp)
   {
     this.Tododate = temp;
   }
-  public String getTododate()
+  public String getDate()
   {
     SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
     return sdf.format(this.Tododate);
@@ -39,7 +39,6 @@ public class PIMTodo extends PIMEntity
     try
     {
       SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-      System.out.println(temp);
       Date date = sdf.parse(temp);
       return date;
     }
@@ -65,7 +64,7 @@ public class PIMTodo extends PIMEntity
 
   public String toString()
   {
-    return "TODO"+"   "+getPriority()+"   "+getTododate()+"   "+getTodo();
+    return "TODO"+"   "+getPriority()+"   "+getDate()+"   "+getTodo();
   }
 
   public static PIMTodo FromString(String s)

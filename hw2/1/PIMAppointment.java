@@ -3,7 +3,7 @@ import java.text.*;
 import java.util.*;
 
 
-public class PIMAppointment extends PIMEntity
+public class PIMAppointment extends PIMEntity implements PIMDate
 {
   Date Appointmentdate = new Date();
   String description;
@@ -25,11 +25,11 @@ public class PIMAppointment extends PIMEntity
   {
     return this.description;
   }
-  public void setAppointmentdate(Date temp)
+  public void setDate(Date temp)
   {
     this.Appointmentdate = temp;
   }
-  public String getAppointmentdate()
+  public String getDate()
   {
     SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
     return sdf.format(this.Appointmentdate);
@@ -39,7 +39,7 @@ public class PIMAppointment extends PIMEntity
     try
     {
       SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-      System.out.println(temp);
+      //System.out.println(temp);
       Date date = sdf.parse(temp);
       return date;
     }
@@ -66,7 +66,7 @@ public class PIMAppointment extends PIMEntity
 
   public String toString()
   {
-    return "APPO"+"   "+getPriority()+"   "+getAppointmentdate()+"   "+getdescription();
+    return "APPO"+"   "+getPriority()+"   "+getDate()+"   "+getdescription();
   }
   public static PIMAppointment FromString(String s)
   {
