@@ -15,4 +15,5 @@ public interface PIMDate
 {
   public String getDate();
   public void setDate(Date date);
+  public Date GetDate();
 }

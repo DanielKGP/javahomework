@@ -1,5 +1,5 @@
 TODO   e   11/22/2003   e
 TODO   urgent   04/20/2017   Submit java homework.
-NOTE   son of bitch   null
 APPO   dsa   04/20/2011   sda
 NOTE   asfsafsa   sdsasdsa
+TODO   urgent   04/20/2017   Submit java homework.

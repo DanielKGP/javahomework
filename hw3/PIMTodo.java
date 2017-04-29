@@ -19,10 +19,15 @@ public class PIMTodo extends PIMEntity implements PIMDate
     this.Todo = Todo;
     this.Tododate = date;
   }
+  public PIMTodo(String Todo,String t)
+  {
+    super();
+    this.Todo = Todo;
+    setTododate(t);
+  }
   public PIMTodo()
   {
     super();
-    this.Todo = "";
   }
   public void setTodo(String temp)
   {
@@ -40,6 +45,10 @@ public class PIMTodo extends PIMEntity implements PIMDate
   {
     SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
     return sdf.format(this.Tododate);
+  }
+  public Date GetDate()
+  {
+    return this.Tododate;
   }
   public Date getTododate(String temp)
   {

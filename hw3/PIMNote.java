@@ -17,6 +17,11 @@ public class PIMNote extends PIMEntity
     super(Priority);
     this.Note = Note;
   }
+  public PIMNote(String Note)
+  {
+    super();
+    this.Note = Note;
+  }
   public void setNote(String temp)
   {
     this.Note = temp;

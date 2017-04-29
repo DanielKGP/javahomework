@@ -1,4 +1,14 @@
 
+/**
+ *
+ * @author 康赣鹏
+ * @studentID 14130140377
+ * @email 1159838847@qq.com
+ *
+ *
+ */
+
+
 import java.text.*;
 import java.util.*;
 import java.io.*;
@@ -133,7 +143,7 @@ public class PIMManager
     try
     {
       date = sdf.parse(Itemdate);
-      System.out.println(sdf.format(date));
+      //System.out.println(sdf.format(date));
     }
     catch (ParseException e)
     {

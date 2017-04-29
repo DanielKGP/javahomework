@@ -9,43 +9,54 @@
 import java.text.*;
 import java.util.*;
 
-public class PIMTodo extends PIMEntity implements PIMDate
+
+public class PIMAppointment extends PIMEntity implements PIMDate
 {
-  String Todo;
-  Date Tododate;
-  public PIMTodo(String Priority,String Todo,Date date)
+  Date Appointmentdate = new Date();
+  String description;
+  public PIMAppointment(String Priority,Date date,String description)
   {
     super(Priority);
-    this.Todo = Todo;
-    this.Tododate = date;
+    this.Appointmentdate = date;
+    this.description = description;
   }
-  public PIMTodo()
+  public PIMAppointment(String description,String t)
   {
     super();
-    this.Todo = "";
+    this.description = description;
+    setAppointmentdate(t);
   }
-  public void setTodo(String temp)
+  public PIMAppointment()
   {
-    this.Todo = temp;
+    super();
   }
-  public String getTodo()
+  public void setdescription(String temp)
   {
-    return this.Todo;
+    this.description = temp;
+  }
+  public String getdescription()
+  {
+    return this.description;
   }
   public void setDate(Date temp)
   {
-    this.Tododate = temp;
+    this.Appointmentdate = temp;
   }
   public String getDate()
   {
     SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-    return sdf.format(this.Tododate);
+    return sdf.format(this.Appointmentdate);
   }
-  public Date getTododate(String temp)
+  public Date GetDate()
+  {
+    return this.Appointmentdate;
+  }
+  public Date getAppointmentdate(String temp)
   {
     try
     {
       SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+      //System.out.println(temp);
       Date date = sdf.parse(temp);
       return date;
     }
@@ -55,13 +66,14 @@ public class PIMTodo extends PIMEntity implements PIMDate
     }
     return null;
   }
-  public void setTododate(String temp)
+
+  public void setAppointmentdate(String temp)
   {
     try
     {
       SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
       Date date = sdf.parse(temp);
-      this.Tododate = date;
+      this.Appointmentdate = date;
     }
     catch(Exception e)
     {
@@ -71,10 +83,9 @@ public class PIMTodo extends PIMEntity implements PIMDate
 
   public String toString()
   {
-    return "TODO"+"   "+getPriority()+"   "+getDate()+"   "+getTodo();
+    return "APPO"+"   "+getPriority()+"   "+getDate()+"   "+getdescription();
   }
-
-  public static PIMTodo FromString(String s)
+  public static PIMAppointment FromString(String s)
   {
     String[] ttemp = s.split("(   )");
     String[] tttemp  = new String[4];
@@ -83,23 +94,22 @@ public class PIMTodo extends PIMEntity implements PIMDate
     {
       if(index >= 4)
       {
-          System.out.println("Input String cannot be transformed to PIMTodo");
-          System.out.println(index);
-          return null;
+        System.out.println("Input String cannot be transformed to PIMTodo");
+        System.out.println(index);
+        return null;
       }
       if(!var.equals(" "))
       {
         tttemp[index] = var;
         index += 1;
       }
+
     }
+    PIMAppointment ttt = new PIMAppointment();
+    Date date = ttt.getAppointmentdate(tttemp[2]);
+    return new PIMAppointment(tttemp[1],date,tttemp[3]);
 
-    PIMTodo ttt = new PIMTodo();
-    Date date = ttt.getTododate(tttemp[2]);
-
-    return new PIMTodo(tttemp[1],tttemp[3],date);
   }
-
   public void fromString(String s)
   {
     String[] ttemp = s.split("(   )");
@@ -118,9 +128,15 @@ public class PIMTodo extends PIMEntity implements PIMDate
         index += 1;
       }
     }
+    //if(!tttemp[0].equals("Todo"))
+    //{
+      //System.out.println("Input String cannot be transformed to PIMTodo");
+      //return
+    //}
     setPriority(tttemp[1]);
-    setTododate(tttemp[2]);
-    setTodo(tttemp[3]);
+    setAppointmentdate(tttemp[2]);
+    setdescription(tttemp[3]);
     return;
+
   }
 }

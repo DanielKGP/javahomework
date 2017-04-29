@@ -21,6 +21,12 @@ public class PIMContact extends PIMEntity
     this.lastname = lastname;
     this.emailaddress = emailaddress;
   }
+  public PIMContact(String firstname,String lastname)
+  {
+    super();
+    this.firstname = firstname;
+    this.lastname = lastname;
+  }
   public void setfirstname(String temp)
   {
     this.firstname = temp;
